@@ -6,7 +6,8 @@ import { ModeToggle } from "@/components/toggle-mode";
 import { currentProfile } from "@/lib/current-profile";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import SidebarItem from "@/components/navigation/sidebar-item";
-import NavigationAction from "@/components/navigation/navigation-action";
+import SidebarAction from "@/components/navigation/sidebar-action";
+
 
 const Sidebar = async () => {
   const profile = await currentProfile();
@@ -27,9 +28,9 @@ const Sidebar = async () => {
 
   return (
     <section className="w-full h-full space-y-4 flex flex-col items-center py-3 text-primary dark:bg-[#1E1F22]">
-      <NavigationAction />
+      <SidebarAction/>
       <Separator className="w-10 h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md mx-auto" />
-      <ScrollArea>
+      <ScrollArea className="w-full h-full">
         {servers.map((server) => (
           <div key={server.id} className="mb-4">
             <SidebarItem
