@@ -42,38 +42,38 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         {isModerator && (
           <DropdownMenuItem
             onClick={() => onOpen("invite", { server })}
-            className="text-indigo-600 dark:text-indigo-400 px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white dark:hover:text-white transition rounded"
+            className="text-indigo-600 dark:text-indigo-400 px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white dark:hover:text-white transition rounded border-none outline-none"
           >
             Invite People <UserPlus className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded ">
+          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none">
             Server Settings
             <Settings className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded">
+          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none">
             Manage Members
             <Users className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded">
+          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none">
             Create Channel
             <Plus className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && <DropdownMenuSeparator />}
         {isAdmin && (
-          <DropdownMenuItem className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded">
+          <DropdownMenuItem className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none">
             Delete Server
             <Trash className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {!isAdmin && (
-          <DropdownMenuItem className="text-emerald-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-emerald-500 hover:text-white rounded">
+          <DropdownMenuItem className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none">
             Leave Server
             <LogOut className="size-4 ml-auto" />
           </DropdownMenuItem>
