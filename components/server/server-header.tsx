@@ -1,3 +1,5 @@
+"use client"
+
 import { MemberRole } from "@prisma/client";
 import { ServerWithMembersWithProfiles } from "@/types";
 import {
@@ -16,6 +18,7 @@ import {
   Users,
 } from "lucide-react";
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import { useModelStore } from "@/hooks/use-model-store";
 
 interface ServerHeaderProps {
   server?: ServerWithMembersWithProfiles;
@@ -23,6 +26,8 @@ interface ServerHeaderProps {
 }
 
 const ServerHeader = ({ server, role }: ServerHeaderProps) => {
+  const { onOpen } = useModelStore();
+
   const isAdmin = role === MemberRole.ADMIN;
   const isModerator = isAdmin || role === MemberRole.MODERATOR;
   return (
@@ -35,12 +40,15 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-xs text-black medium-text dark:text-neutral-400 space-y-[2px]">
         {isModerator && (
-          <DropdownMenuItem className="text-indigo-600 dark:text-indigo-400 px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white dark:hover:text-white transition rounded">
+          <DropdownMenuItem
+            onClick={() => onOpen("invite", { server })}
+            className="text-indigo-600 dark:text-indigo-400 px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white dark:hover:text-white transition rounded"
+          >
             Invite People <UserPlus className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded">
+          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded ">
             Server Settings
             <Settings className="size-4 ml-auto" />
           </DropdownMenuItem>

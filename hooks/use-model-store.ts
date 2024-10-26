@@ -1,17 +1,24 @@
+import { Server } from '@prisma/client'
 import {create } from 'zustand'
 
-export type ModelType = 'createServer'
+export type ModelType = 'createServer' | 'invite'
+
+interface ModelData {
+    server?: Server
+}
 
 interface ModelStore {
     type: ModelType | null
+    data: ModelData
     isOpen: boolean
-    onOpen: (type: ModelType) => void
+    onOpen: (type: ModelType, data?: ModelData) => void
     onClose: () => void
 }
 
 export const useModelStore = create<ModelStore>((set) => ({
     type: null,
+    data: {},
     isOpen: false,
-    onOpen: (type) => set({ type, isOpen: true }),
+    onOpen: (type, data = {}) => set({ type, isOpen: true, data }),
     onClose: () => set({ isOpen: false }),
 }))
