@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { MemberRole } from "@prisma/client";
 import { ServerWithMembersWithProfiles } from "@/types";
@@ -48,7 +48,10 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none">
+          <DropdownMenuItem
+            onClick={() => onOpen("editServer", { server })}
+            className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none"
+          >
             Server Settings
             <Settings className="size-4 ml-auto" />
           </DropdownMenuItem>

@@ -1,7 +1,7 @@
 import { Server } from '@prisma/client'
 import {create } from 'zustand'
 
-export type ModelType = 'createServer' | 'invite'
+export type ModelType = 'createServer' | 'invite' | 'editServer'
 
 interface ModelData {
     server?: Server
