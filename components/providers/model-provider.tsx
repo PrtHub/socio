@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import InviteModel from "@/components/models/invite-model";
+import MembersModel from "@/components/models/members-model";
 import EditServerModel from "@/components/models/edit-server-model";
 import CreateServerModel from "@/components/models/create-server-model";
 
@@ -21,6 +22,7 @@ const ModelProvider = () => {
       <CreateServerModel />
       <InviteModel/>
       <EditServerModel/>
+      <MembersModel/>
     </>
   );
 };

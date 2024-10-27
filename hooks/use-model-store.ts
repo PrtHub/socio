@@ -1,10 +1,11 @@
-import { Server } from '@prisma/client'
+import { ServerWithMembersWithProfiles } from '@/types'
+// import { Server } from '@prisma/client'
 import {create } from 'zustand'
 
-export type ModelType = 'createServer' | 'invite' | 'editServer'
+export type ModelType = 'createServer' | 'invite' | 'editServer' | 'members'
 
 interface ModelData {
-    server?: Server
+    server?: ServerWithMembersWithProfiles
 }
 
 interface ModelStore {
