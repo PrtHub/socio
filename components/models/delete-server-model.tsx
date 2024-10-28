@@ -14,20 +14,20 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useModelStore } from "@/hooks/use-model-store";
 
-const LeaveServerModel = () => {
+const DeleteServerModel = () => {
   const router = useRouter()
   const { type, isOpen, onClose, data } = useModelStore();
   const { server } = data;
 
-  const isModelOpen = isOpen && type === "leaveServer";
+  const isModelOpen = isOpen && type === "deleteServer";
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const onLeave = async () => {
+  const onDelete = async () => {
     try {
       setIsLoading(true);
 
-      await axios.patch(`/api/servers/${server?.id}/leave`);
+      await axios.delete(`/api/servers/${server?.id}`);
 
       onClose();
       router.refresh();
@@ -44,14 +44,14 @@ const LeaveServerModel = () => {
       <DialogContent className="bg-white p-0 text-black overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center bold-text">
-            Leave Server
+            Delete Server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
-            Are you sure you want to leave the{" "}
+            Are you sure you want to do this?{" "} <br />
             <span className="semibold-text text-indigo-500">
-              {server?.name}
+              {server?.name} {" "}
             </span>
-            ?
+            will be permanently deleted
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="bg-gray-100 px-6 py-4 mx-auto w-full max-w-sm">
@@ -59,7 +59,7 @@ const LeaveServerModel = () => {
             <Button disabled={isLoading} variant="ghost" onClick={onClose}>
               Cancel
             </Button>
-            <Button disabled={isLoading} variant="primary" onClick={onLeave}>
+            <Button disabled={isLoading} variant="primary" onClick={onDelete}>
               Confirm
             </Button>
           </div>
@@ -69,4 +69,4 @@ const LeaveServerModel = () => {
   );
 };
 
-export default LeaveServerModel;
+export default DeleteServerModel;

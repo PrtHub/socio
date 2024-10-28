@@ -6,6 +6,7 @@ import MembersModel from "@/components/models/members-model";
 import EditServerModel from "@/components/models/edit-server-model";
 import LeaveServerModel from "@/components/models/leave-server-model";
 import CreateServerModel from "@/components/models/create-server-model";
+import DeleteServerModel from "@/components/models/delete-server-model";
 import CreateChannelModel from "@/components/models/create-channel-model";
 
 const ModelProvider = () => {
@@ -27,6 +28,7 @@ const ModelProvider = () => {
       <MembersModel/>
       <CreateChannelModel/>
       <LeaveServerModel/>   
+      <DeleteServerModel/>
       </>
   );
 };

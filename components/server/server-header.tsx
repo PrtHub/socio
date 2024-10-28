@@ -67,23 +67,28 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         )}
         {isModerator && (
           <DropdownMenuItem
-           onClick={() => onOpen("createChannel")}
-          className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none">
+            onClick={() => onOpen("createChannel")}
+            className="px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-indigo-500 hover:text-white transition rounded border-none outline-none"
+          >
             Create Channel
             <Plus className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && <DropdownMenuSeparator />}
         {isAdmin && (
-          <DropdownMenuItem className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none">
+          <DropdownMenuItem
+            onClick={() => onOpen("deleteServer", { server })}
+            className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none"
+          >
             Delete Server
             <Trash className="size-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {!isAdmin && (
           <DropdownMenuItem
-          onClick={() => onOpen("leaveServer", { server })}
-          className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none">
+            onClick={() => onOpen("leaveServer", { server })}
+            className="text-rose-500 transition px-3 py-2 cursor-pointer text-sm flex items-center hover:bg-rose-500 hover:text-white rounded border-none outline-none"
+          >
             Leave Server
             <LogOut className="size-4 ml-auto" />
           </DropdownMenuItem>
