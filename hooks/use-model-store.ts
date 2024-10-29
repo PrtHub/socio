@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { ServerWithMembersWithProfiles } from "@/types";
+import { ChannelType } from "@prisma/client";
 
 export type ModelType =
   | "createServer"
@@ -12,6 +13,7 @@ export type ModelType =
 
 interface ModelData {
   server?: ServerWithMembersWithProfiles;
+  channelType?: ChannelType;
 }
 
 interface ModelStore {

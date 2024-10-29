@@ -3,6 +3,7 @@
 import * as z from "zod";
 import axios from "axios";
 import qs from "query-string";
+import { useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -19,11 +20,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
-import { useParams, useRouter } from "next/navigation";
 import { ChannelType } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams, useRouter } from "next/navigation";
 import { useModelStore } from "@/hooks/use-model-store";
 import {
   Select,
@@ -44,20 +45,30 @@ const formSchema = z.object({
 });
 
 const CreateChannelModel = () => {
-  const { type, isOpen, onClose } = useModelStore();
+  const { type, isOpen, onClose, data } = useModelStore();
   const router = useRouter();
   const params = useParams();
+
+  const isModelOpen = isOpen && type === "createChannel";
+  const {channelType} = data
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   });
 
   const isPending = form.formState.isSubmitting;
-  const isModelOpen = isOpen && type === "createChannel";
+
+  useEffect(() => {
+    if(channelType) {
+      form.setValue("type", channelType)
+    } else {
+      form.setValue("type", ChannelType.TEXT)
+    }
+  }, [channelType, form])
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
