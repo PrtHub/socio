@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChannelType, MemberRole } from "@prisma/client";
 import ServerHeader from "@/components/server/server-header";
 import ServerSearch from "@/components/server/server-search";
-import ServerMembers from "@/components/server/server-members";  
+import ServerMembers from "@/components/server/server-members";
 import ServerSection from "@/components/server/server-section";
 import ServerChannels from "@/components/server/server-channels";
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
@@ -127,12 +127,12 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
               sectionType="channels"
             />
             {textChannels?.map((channel) => (
-                <ServerChannels
-                  key={channel.id}
-                  server={server}
-                  channel={channel}
-                  role={role}
-                />
+              <ServerChannels
+                key={channel.id}
+                server={server}
+                channel={channel}
+                role={role}
+              />
             ))}
           </section>
         )}
@@ -145,12 +145,12 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
               sectionType="channels"
             />
             {audioChannels?.map((channel) => (
-                <ServerChannels
-                  key={channel.id}
-                  server={server}
-                  channel={channel}
-                  role={role}
-                />
+              <ServerChannels
+                key={channel.id}
+                server={server}
+                channel={channel}
+                role={role}
+              />
             ))}
           </section>
         )}
@@ -163,12 +163,12 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
               sectionType="channels"
             />
             {videoChannels?.map((channel) => (
-                <ServerChannels
-                  key={channel.id}
-                  server={server}
-                  channel={channel}
-                  role={role}
-                />
+              <ServerChannels
+                key={channel.id}
+                server={server}
+                channel={channel}
+                role={role}
+              />
             ))}
           </section>
         )}
@@ -181,7 +181,7 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
               sectionType="members"
             />
             {members?.map((member) => (
-                <ServerMembers key={member.id} server={server} member={member}/>
+              <ServerMembers key={member.id} server={server} member={member} />
             ))}
           </section>
         )}

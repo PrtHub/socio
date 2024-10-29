@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import ActionTooltip from "@/components/action-tooltip";
 import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
+import { useModelStore } from "@/hooks/use-model-store";
 
 interface ServerChannelsProps {
   server: Server;
@@ -19,6 +20,7 @@ const channelIconMap = {
 };
 
 const ServerChannels = ({ role, server, channel }: ServerChannelsProps) => {
+  const { onOpen } = useModelStore();
   const router = useRouter();
   const params = useParams();
 
@@ -42,14 +44,17 @@ const ServerChannels = ({ role, server, channel }: ServerChannelsProps) => {
         {channel?.name}
       </p>
       {channel?.name !== "general" && role !== MemberRole.GUEST && (
-          <div className="ml-auto  flex items-center gap-x-2">
-            <ActionTooltip label="Edit" side="top" align="center">
-                <Edit className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition"/>
-            </ActionTooltip>
-            <ActionTooltip label="Delete" side="top" align="center">
-                <Trash className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition"/>
-            </ActionTooltip>
-          </div>
+        <div className="ml-auto  flex items-center gap-x-2">
+          <ActionTooltip label="Edit" side="top" align="center">
+            <Edit onClick={() => onOpen("editChannel", { channel, server })} className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition" />
+          </ActionTooltip>
+          <ActionTooltip label="Delete" side="top" align="center">
+            <Trash
+              onClick={() => onOpen("deleteChannel", { channel, server })}
+              className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition"
+            />
+          </ActionTooltip>
+        </div>
       )}
       {channel?.name === "general" && (
         <Lock className="size-4 ml-auto text-zinc-500 dark:text-zinc-400" />

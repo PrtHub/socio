@@ -36,6 +36,7 @@ import { useRouter } from "next/navigation";
 import UserAvatar from "@/components/user-avatar";
 import { useModelStore } from "@/hooks/use-model-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { ServerWithMembersWithProfiles } from "@/types";
 
 const roleIconMap = {
   GUEST: null,
@@ -50,7 +51,7 @@ const MembersModel = () => {
   const [loadingId, setLoadingId] = useState("");
 
   const isModelOpen = isOpen && type === "members";
-  const { server } = data
+  const { server } = data as { server: ServerWithMembersWithProfiles };
 
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
