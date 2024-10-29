@@ -26,8 +26,13 @@ const ServerChannels = ({ role, server, channel }: ServerChannelsProps) => {
 
   const Icon = channelIconMap[channel?.type];
 
+  const handleClick = () => {
+    router.push(`/servers/${server?.id}/channels/${channel?.id}`);
+  };
+
   return (
     <button
+      onClick={handleClick}
       className={cn(
         "w-full group flex items-center py-2 px-2 rounded hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
         params?.channelId === channel?.id && "bg-zinc-700/20 dark:bg-zinc-700"
@@ -46,11 +51,20 @@ const ServerChannels = ({ role, server, channel }: ServerChannelsProps) => {
       {channel?.name !== "general" && role !== MemberRole.GUEST && (
         <div className="ml-auto  flex items-center gap-x-2">
           <ActionTooltip label="Edit" side="top" align="center">
-            <Edit onClick={() => onOpen("editChannel", { channel, server })} className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition" />
+            <Edit
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpen("editChannel", { channel, server });
+              }}
+              className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition"
+            />
           </ActionTooltip>
           <ActionTooltip label="Delete" side="top" align="center">
             <Trash
-              onClick={() => onOpen("deleteChannel", { channel, server })}
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpen("deleteChannel", { channel, server });
+              }}
               className="size-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600  dark:text-zinc-400 hover:dark:text-zinc-300 transition"
             />
           </ActionTooltip>
