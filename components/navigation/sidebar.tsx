@@ -27,7 +27,7 @@ const Sidebar = async () => {
   });
 
   return (
-    <section className="w-full h-full space-y-4 flex flex-col items-center py-3 text-primary dark:bg-[#1E1F22]">
+    <section className="w-full h-full space-y-4 flex flex-col items-center py-3 text-primary bg-[#E3E5E8] dark:bg-[#1E1F22]">
       <SidebarAction/>
       <Separator className="w-10 h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md mx-auto" />
       <ScrollArea className="w-full h-full">
