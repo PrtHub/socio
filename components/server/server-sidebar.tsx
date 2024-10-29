@@ -51,17 +51,17 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
     },
   });
 
-  const textChannels = server?.channels.filter((channel) => {
+  const textChannels = server?.channels?.filter((channel) => {
     return channel.type === ChannelType.TEXT;
   });
-  const audioChannels = server?.channels.filter((channel) => {
+  const audioChannels = server?.channels?.filter((channel) => {
     return channel.type === ChannelType.AUDIO;
   });
-  const videoChannels = server?.channels.filter((channel) => {
+  const videoChannels = server?.channels?.filter((channel) => {
     return channel.type === ChannelType.VIDEO;
   });
 
-  const members = server?.members.filter((member) => {
+  const members = server?.members?.filter((member) => {
     return member.profileId !== profile.id;
   });
 

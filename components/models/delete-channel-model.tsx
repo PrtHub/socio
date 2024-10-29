@@ -39,8 +39,8 @@ const DeleteChannelModel = () => {
       await axios.delete(url);
 
       onClose();
-      router.refresh();
       router.push(`/servers/${params.serverId}`)
+      router.refresh();
     } catch (error) {
       console.log(error);
     } finally {
