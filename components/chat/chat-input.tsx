@@ -8,12 +8,8 @@ import { Plus, Smile } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { useModelStore } from "@/hooks/use-model-store";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -27,7 +23,9 @@ const formSchema = z.object({
 });
 
 const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
+  const { onOpen } = useModelStore();
   const router = useRouter();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,17 +37,17 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-        const url = qs.stringifyUrl({
-            url: apiUrl,
-            query,
-        })
+      const url = qs.stringifyUrl({
+        url: apiUrl,
+        query,
+      });
 
-        await axios.post(url, values);
+      await axios.post(url, values);
 
-        form.reset();
-        router.refresh()
+      form.reset();
+      router.refresh();
     } catch (error) {
-        console.log("Chat Input Error", error);
+      console.log("Chat Input Error", error);
     }
   };
 
@@ -66,7 +64,7 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                   <button
                     type="button"
                     disabled={isLoading}
-                    onClick={() => {}}
+                    onClick={() => onOpen("messageFile", { apiUrl, query })}
                     className="absolute top-7 left-8 size-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 text-white rounded-full p-1 flex items-center justify-center"
                   >
                     <Plus className="text-white dark:text-[#313338]" />

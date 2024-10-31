@@ -7,13 +7,11 @@ import { UploadDropzone } from "@/lib/uploadthing";
 interface FileUploadProps {
   onChange: (url?: string) => void;
   value?: string;
-  endPoint: "serverImage" | "messageFile";
+  endPoint: "serverImage";
 }
 
 const FileUpload = ({ endPoint, onChange, value }: FileUploadProps) => {
-  const fileType = value?.split(".").pop();
-
-  if (value && fileType !== "pdf") {
+  if (value) {
     return (
       <div className="w-20 h-20 relative">
         <Image
@@ -27,7 +25,7 @@ const FileUpload = ({ endPoint, onChange, value }: FileUploadProps) => {
           onClick={() => onChange("")}
           className="bg-rose-500 text-white p-1 rounded-full absolute  top-0 right-0 shadow-sm"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 text-white hover:text-zinc-200" />
         </button>
       </div>
     );
@@ -42,7 +40,9 @@ const FileUpload = ({ endPoint, onChange, value }: FileUploadProps) => {
       }}
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
-        onChange(res[0].url);
+        if (res?.[0]?.url) {
+          onChange(res[0].url);
+        }
       }}
       onUploadError={(err) => {
         console.log(err);
