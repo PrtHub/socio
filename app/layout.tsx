@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { ClerkProvider } from "@clerk/nextjs";
 import ModelProvider from "@/components/providers/model-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { SocketProvider } from "@/components/providers/socket-provider";
 
 const ggsansBold = localFont({
   src: "./fonts/ggsansBold.ttf",
@@ -56,8 +57,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ModelProvider/>
-            {children}
+            <SocketProvider>
+              <ModelProvider />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
