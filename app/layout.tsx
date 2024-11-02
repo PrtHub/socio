@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import ModelProvider from "@/components/providers/model-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SocketProvider } from "@/components/providers/socket-provider";
+import { TanStackProvider } from "@/components/providers/tanstack-provider";
 
 const ggsansBold = localFont({
   src: "./fonts/ggsansBold.ttf",
@@ -59,7 +60,7 @@ export default function RootLayout({
           >
             <SocketProvider>
               <ModelProvider />
-              {children}
+              <TanStackProvider>{children}</TanStackProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>
