@@ -1,7 +1,10 @@
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+
+import { db } from "@/lib/db";
+import ChatInput from "@/components/chat/chat-input";
 import { currentProfile } from "@/lib/current-profile";
-import ChatHeader from "@/components/chat/chat-header"; 
+import ChatHeader from "@/components/chat/chat-header";
+import ChatMessages from "@/components/chat/chat-messages";
 import { getOrCreateConversation } from "@/lib/conversation";
 
 const MemberIdPage = async ({
@@ -49,6 +52,23 @@ const MemberIdPage = async ({
         imgUrl={otherMember.profile.imgUrl}
         serverId={params.serverId}
         type="conversation"
+      />
+      <ChatMessages
+        type="conversation"
+        name={otherMember.profile.name}
+        member={currentMember}
+        chatId={conversation.id}
+        socketUrl="/api/socket/direct-messages"
+        apiUrl="/api/direct-messages"
+        socketQuery={{ conversationId: conversation.id }}
+        paramKey="conversationId"
+        paramValue={conversation.id}
+      />
+      <ChatInput
+        type="conversation"
+        name={otherMember.profile.name}
+        apiUrl="/api/socket/direct-messages"
+        query={{ conversationId: conversation.id }}
       />
     </section>
   );
