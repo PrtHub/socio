@@ -29,10 +29,6 @@ export default async function handler(
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    if (!content) {
-      return res.status(400).json({ error: "content is required" });
-    }
-
     const server = await db.server.findFirst({
       where: {
         id: serverId as string,
@@ -104,7 +100,7 @@ export default async function handler(
         },
         data: {
           fileUrl: null,
-          content: "This message has been deleted",
+          content: "This message has been deleted.",
           deleted: true,
         },
         include: {
@@ -118,9 +114,9 @@ export default async function handler(
     }
 
     if (req.method === "PATCH") {
-        if(!isOwner) {
-          return res.status(401).json({ error: "Unauthorized" });
-        }
+      if (!isOwner) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
       message = await db.message.update({
         where: {
           id: messageId as string,

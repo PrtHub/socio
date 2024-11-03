@@ -12,16 +12,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useModelStore } from "@/hooks/use-model-store";
 
-const DeleteChannelModel = () => {
+const DeleteMessageModel = () => {
   const router = useRouter();
-  const params = useParams()
   const { type, isOpen, onClose, data } = useModelStore();
-  const { channel } = data;
+  const { apiUrl, query } = data;
 
-  const isModelOpen = isOpen && type === "deleteChannel";
+  const isModelOpen = isOpen && type === "deleteMessage";
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,16 +29,13 @@ const DeleteChannelModel = () => {
       setIsLoading(true);
 
       const url = qs.stringifyUrl({
-        url: `/api/channels/${channel?.id}`,
-        query: {
-          serverId: params?.serverId,
-        },
+        url: apiUrl || "",
+        query
       });
 
       await axios.delete(url);
 
       onClose();
-      router.push(`/servers/${params?.serverId}`)
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -53,15 +49,11 @@ const DeleteChannelModel = () => {
       <DialogContent className="bg-white p-0 text-black overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center bold-text">
-            Delete Channel
+            Delete Message
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500 text-base">
             Are you sure you want to do this? <br />
-            This will permanently delete your{" "}
-            <span className="font-semibold text-indigo-500">
-              {channel?.name}
-            </span>{" "}
-            channel.
+           This message will be permanently deleted.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="bg-gray-100 px-6 py-4 mx-auto w-full max-w-sm">
@@ -79,4 +71,4 @@ const DeleteChannelModel = () => {
   );
 };
 
-export default DeleteChannelModel;
+export default DeleteMessageModel;

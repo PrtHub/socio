@@ -10,6 +10,7 @@ import EditChannelModel from "@/components/models/edit-channel-model";
 import CreateServerModel from "@/components/models/create-server-model";
 import DeleteServerModel from "@/components/models/delete-server-model";
 import CreateChannelModel from "@/components/models/create-channel-model";
+import DeleteMessageModel from "@/components/models/delete-message-model";
 import DeleteChannelModel from "@/components/models/delete-channel-model";
 
 const ModelProvider = () => {
@@ -35,6 +36,7 @@ const ModelProvider = () => {
       <DeleteChannelModel/>
       <EditChannelModel/>
       <MessageFileModel/>
+      <DeleteMessageModel/>
       </>
   );
 };

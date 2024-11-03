@@ -22,6 +22,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useModelStore } from "@/hooks/use-model-store";
 
 interface ChatItemProps {
   id: string;
@@ -59,6 +60,7 @@ const ChatItem = ({
   socketUrl,
 }: ChatItemProps) => {
   const router = useRouter();
+  const {onOpen} = useModelStore()
 
   const [isImageError, setIsImageError] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -249,7 +251,7 @@ const ChatItem = ({
             </ActionTooltip>
           )}
           <ActionTooltip label="Delete">
-            <Trash className="size-4 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 hover:dark:text-zinc-300 cursor-pointer ml-auto  transition" />
+            <Trash onClick={() => onOpen("deleteMessage", { apiUrl: `${socketUrl}/${id}`, query: socketQuery,  })} className="size-4 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 hover:dark:text-zinc-300 cursor-pointer ml-auto  transition" />
           </ActionTooltip>
         </div>
       )}
