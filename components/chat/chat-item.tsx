@@ -1,17 +1,5 @@
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
-import qs from "query-string";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import UserAvatar from "@/components/user-avatar";
-import ActionTooltip from "@/components/action-tooltip";
-import { Member, MemberRole, Profile } from "@prisma/client";
 import {
   ShieldAlert,
   ShieldCheck,
@@ -19,10 +7,22 @@ import {
   Pencil,
   Trash,
 } from "lucide-react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import * as z from "zod";
+import axios from "axios";
+import qs from "query-string";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import UserAvatar from "@/components/user-avatar";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams, useRouter } from "next/navigation";
 import { useModelStore } from "@/hooks/use-model-store";
+import ActionTooltip from "@/components/action-tooltip";
+import { Member, MemberRole, Profile } from "@prisma/client";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 interface ChatItemProps {
   id: string;
@@ -60,7 +60,8 @@ const ChatItem = ({
   socketUrl,
 }: ChatItemProps) => {
   const router = useRouter();
-  const {onOpen} = useModelStore()
+  const params = useParams();
+  const { onOpen } = useModelStore();
 
   const [isImageError, setIsImageError] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -94,13 +95,12 @@ const ChatItem = ({
   useEffect(() => {
     const checkFileType = async () => {
       if (!fileUrl) return;
-      
+
       try {
-        const response = await fetch(fileUrl, { method: 'HEAD' });
-        const contentType = response.headers.get('content-type');
+        const response = await fetch(fileUrl, { method: "HEAD" });
+        const contentType = response.headers.get("content-type");
         setFileType(contentType);
-      } catch (error) {
-        console.error('Error checking file type:', error);
+      } catch {
         setIsImageError(true);
       }
     };
@@ -133,15 +133,24 @@ const ChatItem = ({
   const canEditMessage = !deleted && isOwner && !fileUrl;
 
   const isPdfFile = (contentType: string | null) => {
-    return contentType?.includes('application/pdf');
+    return contentType?.includes("application/pdf");
   };
 
-  console.log(fileUrl)
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  };
 
   return (
     <section className="relative group flex items-center p-4  w-full hover:bg-black/5 transition">
       <div className="w-full group flex items-start gap-x-2">
-        <span className="cursor-pointer hover:drop-shadow-md transition">
+        <span
+          onClick={onMemberClick}
+          className="cursor-pointer hover:drop-shadow-md transition"
+        >
           <UserAvatar
             name={member.profile.name}
             imgUrl={member.profile.imgUrl}
@@ -150,7 +159,10 @@ const ChatItem = ({
         <section className="w-full flex flex-col">
           <div className="flex items-center gap-x-2">
             <section className="flex items-center">
-              <p className="semibold-text text-sm hover:underline transition ">
+              <p
+                onClick={onMemberClick}
+                className="semibold-text text-sm hover:underline transition cursor-pointer"
+              >
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>
@@ -199,7 +211,6 @@ const ChatItem = ({
               {content}
               {isUpdated && !deleted && (
                 <span className="text-[10px] text-zinc-500 dark:text-zinc-400 mx-2">
-   
                   (edited)
                 </span>
               )}
@@ -251,7 +262,15 @@ const ChatItem = ({
             </ActionTooltip>
           )}
           <ActionTooltip label="Delete">
-            <Trash onClick={() => onOpen("deleteMessage", { apiUrl: `${socketUrl}/${id}`, query: socketQuery,  })} className="size-4 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 hover:dark:text-zinc-300 cursor-pointer ml-auto  transition" />
+            <Trash
+              onClick={() =>
+                onOpen("deleteMessage", {
+                  apiUrl: `${socketUrl}/${id}`,
+                  query: socketQuery,
+                })
+              }
+              className="size-4 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 hover:dark:text-zinc-300 cursor-pointer ml-auto  transition"
+            />
           </ActionTooltip>
         </div>
       )}

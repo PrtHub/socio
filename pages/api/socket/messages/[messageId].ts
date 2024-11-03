@@ -1,8 +1,8 @@
-import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
-import { NextApiResponseWithSocket } from "@/types";
-import { MemberRole } from "@prisma/client";
 import { NextApiRequest } from "next";
+import { MemberRole } from "@prisma/client";
+import { NextApiResponseWithSocket } from "@/types";
+import { currentProfilePages } from "@/lib/current-profile-pages";
 
 export default async function handler(
   req: NextApiRequest,
