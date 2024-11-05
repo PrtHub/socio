@@ -1,6 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { FileIcon, X } from "lucide-react";
+
 import { UploadDropzone } from "@/lib/uploadthing";
 
 interface AttachmentUploadProps {
@@ -10,8 +13,51 @@ interface AttachmentUploadProps {
 }
 
 const AttachmentUpload = ({ endPoint, onChange, value }: AttachmentUploadProps) => {
+  const [fileType, setFileType] = useState<string | null>(null);
+  const [isImageError, setIsImageError] = useState(false);
+
+  useEffect(() => {
+    const checkFileType = async () => {
+      if (!value) return;
+
+      try {
+        const response = await fetch(value, { method: "HEAD" });
+        const contentType = response.headers.get("content-type");
+        setFileType(contentType);
+      } catch {
+        setIsImageError(true);
+      }
+    };
+
+    checkFileType();
+  }, [value]);
+
+  const isPdfFile = (contentType: string | null) => {
+    return contentType?.includes("application/pdf");
+  };
 
   if (value) {
+    if (!isPdfFile(fileType) && !isImageError) {
+      return (
+        <div className="w-20 h-20 relative">
+          <Image
+            src={value}
+            width={100}
+            height={100}
+            alt="image"
+            className="w-20 h-20 rounded-full"
+            onError={() => setIsImageError(true)}
+          />
+          <button
+            onClick={() => onChange("")}
+            className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+          >
+            <X className="w-4 h-4 text-white hover:text-zinc-200" />
+          </button>
+        </div>
+      );
+    }
+
     return (
       <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
         <FileIcon className="size-10 fill-indigo-200 stroke-indigo-400" />

@@ -12,9 +12,9 @@ interface ServerMembersProps {
 }
 
 const roleIconMap = {
-  [MemberRole.ADMIN]: <ShieldAlert className="size-4 mr-2 text-rose-500" />,
+  [MemberRole.ADMIN]: <ShieldAlert className="size-5 ml-1 text-rose-500" />,
   [MemberRole.MODERATOR]: (
-    <ShieldCheck className="size-4 mr-2 text-indigo-500" />
+    <ShieldCheck className="size-5 ml-1 text-indigo-500" />
   ),
   [MemberRole.GUEST]: null,
 };
@@ -37,7 +37,6 @@ const ServerMembers = ({ member, server }: ServerMembersProps) => {
         params?.memberId === member?.id && "bg-zinc-700/20 dark:bg-zinc-700"
       )}
     >
-      {icon}
       <UserAvatar
         name={member?.profile?.name}
         imgUrl={member?.profile?.imgUrl}
@@ -52,6 +51,7 @@ const ServerMembers = ({ member, server }: ServerMembersProps) => {
       >
         {member?.profile?.name}
       </p>
+      {icon}
     </button>
   );
 };

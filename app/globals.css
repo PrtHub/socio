@@ -89,6 +89,39 @@ body {
   }
 }
 
-.cl-internal-1dauvpw {
+.cl-internal-1dauvpw, .cl-internal-1hp5nqm {
   display: none;
+}
+
+.cl-formButtonPrimary {
+  background-color: rgb(79 70 229);
+  color: white;
+  border: none
+}
+
+.cl-internal-ttumny {
+  box-shadow: none;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: rgb(67 56 202);
+  transition: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+.cl-footerActionLink {
+  color: rgb(79 70 229);
+  font-weight: 500;
+}
+
+.cl-footerActionLink:hover {
+  color: rgb(67 56 202);
+  transition: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+.cl-headerTitle {
+  color: rgb(79 70 229);
 }
