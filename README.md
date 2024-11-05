@@ -2,6 +2,8 @@
 
 Socio is more than just a chat application – it's a comprehensive community platform that combines the power of real-time communication with modern social features. Built with the latest web technologies, it offers a smooth, intuitive experience that feels native across all devices.
 
+![image](https://github.com/user-attachments/assets/f9784cff-5bd9-45a7-b521-683940f9bca8)
+
 ## ✨ Features
 
 - **Real-time Communication** - Instant messaging powered by Socket.IO
