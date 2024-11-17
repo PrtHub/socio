@@ -46,7 +46,7 @@ const MemberIdPage = async ({
 
   const { memberOne, memberTwo } = conversation;
 
-  const otherMember = memberOne.id === currentMember.id ? memberTwo : memberOne;
+  const otherMember = memberOne.profileId === profile.id ? memberTwo : memberOne;
 
   return (
     <section className="bg-white dark:bg-[#313338] h-full flex flex-col">
