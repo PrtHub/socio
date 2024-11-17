@@ -3,6 +3,8 @@
 import axios from "axios";
 import qs from "query-string";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   Check,
   Gavel,
@@ -32,7 +34,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MemberRole } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import UserAvatar from "@/components/user-avatar";
 import { useModelStore } from "@/hooks/use-model-store";
 import { ScrollArea } from "@/components/ui/scroll-area";

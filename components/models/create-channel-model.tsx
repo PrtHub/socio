@@ -4,6 +4,9 @@ import * as z from "zod";
 import axios from "axios";
 import qs from "query-string";
 import { useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
 import {
   Form,
   FormControl,
@@ -19,20 +22,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { ChannelType } from "@prisma/client";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useParams, useRouter } from "next/navigation";
-import { useModelStore } from "@/hooks/use-model-store";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
+import { ChannelType } from "@prisma/client";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useModelStore } from "@/hooks/use-model-store";
+
 
 const formSchema = z.object({
   name: z

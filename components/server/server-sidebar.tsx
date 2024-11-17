@@ -1,15 +1,16 @@
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { ChannelType, MemberRole } from "@prisma/client";
+import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+
+import { db } from "@/lib/db";
 import { Separator } from "@/components/ui/separator";
 import { currentProfile } from "@/lib/current-profile";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ChannelType, MemberRole } from "@prisma/client";
 import ServerHeader from "@/components/server/server-header";
 import ServerSearch from "@/components/server/server-search";
 import ServerMembers from "@/components/server/server-members";
 import ServerSection from "@/components/server/server-section";
 import ServerChannels from "@/components/server/server-channels";
-import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 
 const channelIconMap = {
   [ChannelType.TEXT]: <Hash className="size-4 mr-2" />,

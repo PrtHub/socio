@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { Check, Copy, RefreshCw } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -12,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useOrigin } from "@/hooks/use-origin";
 import { Button } from "@/components/ui/button";
-import { Check, Copy, RefreshCw } from "lucide-react";
 import { useModelStore } from "@/hooks/use-model-store";
 
 const InviteModel = () => {

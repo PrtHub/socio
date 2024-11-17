@@ -1,6 +1,7 @@
-import { db } from "@/lib/db";
 import { NextApiRequest } from "next";
 import { NextApiResponseWithSocket } from "@/types";
+
+import { db } from "@/lib/db";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 
 export default async function handler(

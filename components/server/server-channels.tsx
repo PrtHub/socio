@@ -1,9 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { useParams, useRouter } from "next/navigation";
-import ActionTooltip from "@/components/action-tooltip";
 import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import ActionTooltip from "@/components/action-tooltip";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
 import { useModelStore } from "@/hooks/use-model-store";
 

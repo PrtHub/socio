@@ -1,8 +1,9 @@
 import { Menu } from "lucide-react";
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import Sidebar from "@/components/navigation/sidebar";
-import ServerSidebar from "./server/server-sidebar";
+import ServerSidebar from "@/components/server/server-sidebar";
 
 const MobileToggle = ({ serverId }: { serverId: string }) => {
   return (

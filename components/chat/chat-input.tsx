@@ -6,9 +6,10 @@ import qs from "query-string";
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Input } from "@/components/ui/input";
 import EmojiPicker from "@/components/emoji-picker";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useModelStore } from "@/hooks/use-model-store";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 

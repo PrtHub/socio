@@ -3,6 +3,8 @@
 import axios from "axios";
 import qs from "query-string";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   Dialog,
   DialogContent,
@@ -12,7 +14,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { useModelStore } from "@/hooks/use-model-store";
 
 const DeleteMessageModel = () => {

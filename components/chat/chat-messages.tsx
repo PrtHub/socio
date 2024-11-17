@@ -2,10 +2,11 @@
 
 import { format } from "date-fns";
 import { ElementRef, Fragment, useRef } from "react";
-import ChatItem from "./chat-item";
-import { Member } from "@prisma/client";
-import ChatWelcome from "./chat-welcome";
 import { Loader2, ServerCrash, ArrowUp } from "lucide-react";
+
+import ChatItem from "./chat-item";
+import ChatWelcome from "./chat-welcome";
+import { Member } from "@prisma/client";
 import { useChatQuery } from "@/hooks/use-chat-query";
 import { MessageWithMemberWithProfile } from "@/types";
 import { useChatSocket } from "@/hooks/use-chat-socket";

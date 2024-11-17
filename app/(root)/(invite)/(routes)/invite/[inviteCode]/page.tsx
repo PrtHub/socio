@@ -1,5 +1,6 @@
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+
+import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 
 const inviteCodePage = async ({

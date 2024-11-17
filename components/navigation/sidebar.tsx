@@ -1,6 +1,7 @@
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+
+import { db } from "@/lib/db";
 import { Separator } from "@/components/ui/separator";
 import { ModeToggle } from "@/components/toggle-mode";
 import { currentProfile } from "@/lib/current-profile";

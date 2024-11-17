@@ -1,6 +1,7 @@
-import { db } from "@/lib/db";
 import { NextApiRequest } from "next";
+
 import { MemberRole } from "@prisma/client";
+import { db } from "@/lib/db";
 import { NextApiResponseWithSocket } from "@/types";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 
