@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { v4 as uuid } from "uuid";
 import { NextResponse } from "next/server";
 
